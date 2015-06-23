@@ -12,9 +12,11 @@
     "angular": "~1.4.1",
     "angular-messages": "~1.4.1",
     "angular-ui-router": "~0.2.15",
-    "lodash": "~3.9.3"
+    "lodash": "~3.9.3",
+    "strip-bom": "^1.0.0"
   },
   "devDependencies": {
+    "brfs": "^1.4.0",
     "browserify": "~10.2.4",
     "browserify-ngannotate": "~1.0.1",
     "del": "~1.2.0",

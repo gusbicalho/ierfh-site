@@ -103,6 +103,7 @@ function makeWatchify(mainScript, outPath, bundleName, useUglify) { // Watchify 
   bundler.plugin('tsify', {target:'ES5', module:'commonjs'})
   bundler.on('update', watchifyBundle); // on any dep update, runs the bundler
   bundler.on('log', gutil.log); // output build logs to terminal
+  bundler.transform('brfs');
   if (useUglify)
     bundler.transform('uglifyify',{global: true});
 
@@ -160,7 +161,7 @@ function styles(appFolder,outFolder) { // styles task builder
   return function() {
     return gulp.src(appFolder+'/styles/app.scss')
       // The onError handler prevents Gulp from crashing when you make a mistake in your SASS
-      .pipe(sass().on('error', sass.logError))
+      .pipe(sass({precision: 8}).on('error', sass.logError))
       // Optionally add autoprefixer
       .pipe(autoprefixer("last 2 versions", "> 1%", "ie 8"))
       .pipe(minifyCss({compatibility: 'ie8'}))

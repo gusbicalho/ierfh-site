@@ -17,5 +17,8 @@
     "lodash/lodash.d.ts": {
       "commit": "846a250e0a6f5e6adf6347ee4ca442a9d1abd8fc"
     },
+    "node/node.d.ts": {
+      "commit": "84dfeeac378552c22297a5d555b1999a396d7e7c"
+    }
   }
 }
