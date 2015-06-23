@@ -11,6 +11,8 @@ var app = angular.module('example.App',
 
 import App = require('./app');
 import StateLanding = require('./states/landing');
+import StateAnother = require('./states/another');
 
 App.RegisterWith(app);
 StateLanding.RegisterWith(app);
+StateAnother.RegisterWith(app);
