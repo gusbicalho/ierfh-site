@@ -30,7 +30,7 @@
   		<div id="navbar" class="navbar-collapse" ng-init="navbarCollapsed = true" collapse="navbarCollapsed">
         <!-- These will show up in all pages -->
   			<ul class="nav navbar-nav navbar-left">
-  				<li ui-sref-active="active"><a ui-sref="another">Another state</a></li>
+  				<li><a href>Link</a></li>
   				<li class="dropdown" dropdown>
             <a href class="dropdown-toggle" dropdown-toggle>Dropdown</a>
             <ul class="dropdown-menu">
