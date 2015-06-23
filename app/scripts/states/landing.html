@@ -1,2 +1,8 @@
 ﻿<h2>You've landed.</h2>
-<p>Indeed.</p>
+<ul ng-if="ctrl.Posts">
+	<li ng-repeat="post in ctrl.Posts">
+		<a href="{{::post.ID}}">
+			{{::post.title}}
+		</a>
+	</li>
+</ul>

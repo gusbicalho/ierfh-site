@@ -13,7 +13,7 @@ var gulp = require('gulp'),
 var express = require('express'),
     serverport = 5000;
 
-var outRoot = 'dist';
+var outRoot = 'dist/wp-content/themes/ierfh_fun';
 var appRoot = 'app';
 
 // JSHint task
@@ -40,45 +40,8 @@ var jshintBlobs = [
   appRoot+'/scripts/*.js',appRoot+'/scripts/**/*.js',
   ];
 
-gulp.task('watch', ['jshint', 'watchify', 'copyAssets', 'copyIndex', 'copyViews', 'styles'], keepWatch);
-gulp.task('watch-debug', ['jshint', 'watchify-debug', 'copyAssets', 'copyIndex', 'copyViews', 'styles'], keepWatch);
-
-gulp.task('dev', ['watch'], serveDist);
-gulp.task('dev-debug', ['watch-debug'], serveDist);
-gulp.task('serve', [], serveDist);
-
-gulp.task('deploy', function() {
-  var conn = ftp.create( {
-      host:     'cellere.com.br',
-      user:     'cellere@gusbicalho.com.br',
-      password: 'cellere2611',
-      parallel: 5,
-      log: gutil.log
-  });
-
-  var globs = [
-      outRoot+'/**',
-      'apache/*','apache/.*',
-      'apache/**/*','apache/**/.*'
-  ];
-  
-  return gulp.src( globs, { buffer: false } )
-      .pipe( conn.newerOrDifferentSize( '/' ) ) // only upload newer files 
-      .pipe( conn.dest( '/' ) );
-});
-
-function serveDist() {
-  var server = express();
-  server.use(express.static(outRoot));
-  // Redirects everything back to index.html
-  server.all('/*', function(req, res) {
-    console.log('Sending index.html for url:', req.url);
-    res.sendFile('/index.html', { root: outRoot });
-  });
-  // Start webserver
-  server.listen(serverport);
-  console.log('Server listening at port',serverport);
-}
+gulp.task('dev-prod', ['jshint', 'watchify', 'copyAssets', 'copyIndex', 'copyViews', 'styles'], keepWatch);
+gulp.task('dev', ['jshint', 'watchify-debug', 'copyAssets', 'copyIndex', 'copyViews', 'styles'], keepWatch);
 
 function keepWatch() {
   // Watch our scripts
@@ -165,17 +128,17 @@ function copyAssets(appFolder,outFolder) { // assets task builder
 
 function cleanStyles(outFolder) { // cleanStyles task builder
   return function(cb) {
-    del([outFolder+'/css/'], cb);
+    del([outFolder+'/*.css'], cb);
   };
 }
 function styles(appFolder,outFolder) { // styles task builder
   return function() {
-    return gulp.src(appFolder+'/styles/app.scss')
+    return gulp.src(appFolder+'/styles/style.scss')
       // The onError handler prevents Gulp from crashing when you make a mistake in your SASS
       .pipe(sass({precision: 8}).on('error', sass.logError))
       // Optionally add autoprefixer
       .pipe(autoprefixer("last 2 versions", "> 1%", "ie 8"))
       .pipe(minifyCss({compatibility: 'ie8'}))
-      .pipe(gulp.dest(outFolder+'/css'));
+      .pipe(gulp.dest(outFolder));
   };
 }

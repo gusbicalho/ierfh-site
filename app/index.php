@@ -10,9 +10,8 @@
 
   <base href="<?php echo $_SERVER['REQUEST_URI'] ?>" />
 
-  <link rel='stylesheet' href='css/app.css' type='text/css'>
-  <script type="text/javascript" src="bundle.js"></script>
-  <script type="text/javascript" src="assets/vendor/ui-bootstrap-tpls-0.13.0.min.js"></script>
+  <?php wp_head(); ?>
+  <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
 </head>
 
 <body>
