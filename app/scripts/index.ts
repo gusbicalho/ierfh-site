@@ -7,7 +7,7 @@ import ngUiRouter = require('angular-ui-router');
 export = 'example.App';
 
 var app = angular.module('example.App',
-                         [ngMessages, ngUiRouter]);
+                         [ngMessages, ngUiRouter, 'ui.bootstrap']);
 
 import App = require('./app');
 import StateLanding = require('./states/landing');
