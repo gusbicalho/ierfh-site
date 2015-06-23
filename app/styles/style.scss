@@ -11,4 +11,10 @@ ierfh-fun WordPress Theme © 2011-2014 IERFH
 */
 
 @import "bootstrap-custom";
+@import "yeti/variables";
 @import "bootstrap";
+@import "yeti/bootswatch";
+
+body {
+  padding-top: 50px;
+}
