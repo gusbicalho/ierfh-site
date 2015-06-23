@@ -8,7 +8,7 @@
   
   <title>Angular + SASS + TypeScript + Browserify + Gulp</title>
 
-  <base href="/" />
+  <base href="<?php echo $_SERVER['REQUEST_URI'] ?>" />
 
   <link rel='stylesheet' href='css/app.css' type='text/css'>
   <script type="text/javascript" src="bundle.js"></script>

@@ -13,30 +13,31 @@ var gulp = require('gulp'),
 var express = require('express'),
     serverport = 5000;
 
-var serverRoot = 'dist';
+var outRoot = 'dist';
+var appRoot = 'app';
 
 // JSHint task
 gulp.task('jshint', jshintTask);
 
 // Watchify tasks
-gulp.task('watchify', makeWatchify('./app/scripts/index.ts',serverRoot, true));
-gulp.task('watchify-debug', makeWatchify('./app/scripts/index.ts',serverRoot, false));
+gulp.task('watchify', makeWatchify(appRoot+'/scripts/index.ts',outRoot, true));
+gulp.task('watchify-debug', makeWatchify(appRoot+'/scripts/index.ts',outRoot, false));
 
 // App views tasks
-gulp.task('cleanIndex', cleanIndex(serverRoot));
-gulp.task('cleanViews', cleanViews(serverRoot));
-gulp.task('copyIndex', ['cleanIndex'], copyIndex('./app',serverRoot));
-gulp.task('copyViews', ['cleanViews'], copyViews('./app',serverRoot));
+gulp.task('cleanIndex', cleanIndex(outRoot));
+gulp.task('cleanViews', cleanViews(outRoot));
+gulp.task('copyIndex', ['cleanIndex'], copyIndex(appRoot,outRoot));
+gulp.task('copyViews', ['cleanViews'], copyViews(appRoot,outRoot));
 
 // App styles tasks
-gulp.task('cleanStyles', cleanStyles(serverRoot));
-gulp.task('styles', ['cleanStyles'], styles('./app',serverRoot));
+gulp.task('cleanStyles', cleanStyles(outRoot));
+gulp.task('styles', ['cleanStyles'], styles(appRoot,outRoot));
 // App assets task
-gulp.task('cleanAssets', cleanAssets(serverRoot));
-gulp.task('copyAssets', ['cleanAssets'], copyAssets('./app',serverRoot));
+gulp.task('cleanAssets', cleanAssets(outRoot));
+gulp.task('copyAssets', ['cleanAssets'], copyAssets(appRoot,outRoot));
 
 var jshintBlobs = [
-  './app/scripts/*.js','./app/scripts/**/*.js',
+  appRoot+'/scripts/*.js',appRoot+'/scripts/**/*.js',
   ];
 
 gulp.task('watch', ['jshint', 'watchify', 'copyAssets', 'copyIndex', 'copyViews', 'styles'], keepWatch);
@@ -56,7 +57,7 @@ gulp.task('deploy', function() {
   });
 
   var globs = [
-      'dist/**',
+      outRoot+'/**',
       'apache/*','apache/.*',
       'apache/**/*','apache/**/.*'
   ];
@@ -68,11 +69,11 @@ gulp.task('deploy', function() {
 
 function serveDist() {
   var server = express();
-  server.use(express.static('./dist'));
+  server.use(express.static(outRoot));
   // Redirects everything back to index.html
   server.all('/*', function(req, res) {
     console.log('Sending index.html for url:', req.url);
-    res.sendFile('/index.html', { root: serverRoot });
+    res.sendFile('/index.html', { root: outRoot });
   });
   // Start webserver
   server.listen(serverport);
@@ -84,10 +85,9 @@ function keepWatch() {
   gulp.watch(jshintBlobs,['jshint']);
 
   // Watch app files
-  gulp.watch('./app/styles/*.scss',['styles']);
-  gulp.watch('./app/*.html', ['copyIndex']);
-  gulp.watch(['./app/views/*','./app/views/**/*'], ['copyViews']);
-  //gulp.watch('./app/assets/**/*', ['copyAssets']);
+  gulp.watch(appRoot+'/styles/*.scss',['styles']);
+  gulp.watch([appRoot+'/*.html', appRoot+'/*.php', 'apache/.*', 'apache/**/.*'], ['copyIndex']);
+  gulp.watch([appRoot+'/views/*', appRoot+'/views/**/*'], ['copyViews']);
 }
 
 function jshintTask() { // jshint task
@@ -120,12 +120,23 @@ function makeWatchify(mainScript, outPath, bundleName, useUglify) { // Watchify 
 
 function cleanIndex(outFolder) { // cleanIndex task builder
   return function(cb) {
-    del([outFolder+'/*.html'], cb);
+    del([
+      outFolder+'/*.html',
+      outFolder+'/*.php',
+      outFolder+'/.*',
+      outFolder+'/**/.*'
+      ], cb);
   };
 }
 function copyIndex(appFolder,outFolder) { // copyIndex task builder
   return function() {
-    return gulp.src([appFolder+'/*.html'])
+    var globs = [
+        appFolder+'/*.html',
+        appFolder+'/*.php',
+        'apache/.*',
+        'apache/**/.*'
+    ];
+    return gulp.src(globs)
       .pipe(gulp.dest(outFolder+'/'));
   };
 }
