@@ -8,7 +8,7 @@
   
   <title>Angular + SASS + TypeScript + Browserify + Gulp</title>
 
-  <base href="<?php echo $_SERVER['REQUEST_URI'] ?>" />
+  <base href="/ierfh/" />
 
   <?php wp_head(); ?>
   <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
