@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-default">
+  <nav class="navbar navbar-default navbar-fixed-top">
   	<div class="container-fluid">
   		<!-- Brand and toggle get grouped for better mobile display -->
   		<div class="navbar-header">
@@ -25,7 +25,7 @@
   				<span class="icon-bar"></span>
   				<span class="icon-bar"></span>
   			</button>
-  			<a class="navbar-brand" ui-sref="landing">App</a>
+  			<a class="navbar-brand" ui-sref="landing">IERFH</a>
   		</div>
   		<div id="navbar" class="navbar-collapse" ng-init="navbarCollapsed = true" collapse="navbarCollapsed">
         <!-- These will show up in all pages -->
@@ -51,7 +51,6 @@
   	</div><!--/.container -->
   </nav>
 
-  <h1>App</h1>
   <div ui-view></div>
 </body>
 

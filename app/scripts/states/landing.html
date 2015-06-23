@@ -1,8 +1,11 @@
-﻿<h2>You've landed.</h2>
-<ul ng-if="ctrl.Posts">
-	<li ng-repeat="post in ctrl.Posts">
-		<a href="{{::post.ID}}">
-			{{::post.title}}
-		</a>
-	</li>
-</ul>
+﻿<h1>Posts</h1>
+<span ng-if="!ctrl.posts" us-spinner></span>
+<div ng-if="ctrl.posts">
+  <ul ng-if="ctrl.posts">
+  	<li ng-repeat="post in ctrl.posts">
+  		<a ui-sref="post({postName: post.slug})">
+  			{{::post.title}}
+  		</a>
+  	</li>
+  </ul>
+</div>

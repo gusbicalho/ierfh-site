@@ -19,6 +19,8 @@ app.run(($window: ng.IWindowService) => {
 
 import App = require('./app');
 import StateLanding = require('./states/landing');
+import StatePost = require('./states/post');
 
 App.RegisterWith(app);
 StateLanding.RegisterWith(app);
+StatePost.RegisterWith(app);

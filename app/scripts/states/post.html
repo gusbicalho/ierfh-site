@@ -1,0 +1,13 @@
+﻿<span ng-if="!ctrl.post" us-spinner></span>
+<div ng-if="ctrl.post" class="container">
+  <div class="row">
+    <div class="col col-xs-12">
+      <h1>{{::ctrl.post.title}}</h1>
+      <div ng-bind-html="ctrl.post.content"></div>
+      <button class="btn btn-default" ng-click="ctrl.detailsCollapsed = ! ctrl.detailsCollapsed">
+        {{ctrl.detailOpen ? 'Hide details' : 'Show details'}}
+      </button>
+      <pre collapse="ctrl.detailsCollapsed">{{::ctrl.post | json}}</pre>
+    </div>
+  </div>
+</div>

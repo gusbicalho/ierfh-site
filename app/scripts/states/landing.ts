@@ -11,9 +11,6 @@ function configStates($stateProvider: ng.ui.IStateProvider) {
   $stateProvider
     .state('landing', {
       url: '/',
-      resolve: {
-        Posts: ($http: ng.IHttpService) => $http.get('wp-json/posts/').then((result: any) => result.data)
-      },
       template: stripBom(fs.readFileSync(__dirname+'/landing.html','utf-8')),
       controller: LandingController,
       controllerAs: 'ctrl'
@@ -23,6 +20,9 @@ function configStates($stateProvider: ng.ui.IStateProvider) {
 
 export class LandingController {
   // @ngInject
-  constructor(public Posts: any[]) {
+  constructor(private $http: ng.IHttpService) {
+    $http.get('wp-json/posts/')
+      .then((result: any) => this.posts = result.data);
   }
+  posts: any[];
 }
