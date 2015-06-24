@@ -46,7 +46,7 @@ declare module restangular {
   interface IProvider {
     setBaseUrl(baseUrl: string): void;
     setExtraFields(fields: string[]): void;
-    setParentless(parentless: boolean, routes: string[]): void;
+    setParentless(parentless: boolean | string[]): void;
     setDefaultHttpFields(httpFields: any): void;
     addElementTransformer(route: string, transformer: Function): void;
     addElementTransformer(route: string, isCollection: boolean, transformer: Function): void;
