@@ -1,5 +1,7 @@
 ﻿///<reference path="../../typings/project.d.ts" />
 
+import _ = require('lodash');
+window['_'] = _; // For compatibility with Restangular
 import Spinner = require('spin.js');
 window['Spinner'] = Spinner; // For compatibility with angularSpinner
 
