@@ -1,5 +1,8 @@
 ﻿///<reference path="../../typings/project.d.ts" />
 
+import Spinner = require('spin.js');
+window['Spinner'] = Spinner; // For compatibility with angularSpinner
+
 import angular = require('angular');
 import ngMessages = require('angular-messages');
 import ngSanitize = require('angular-sanitize');
@@ -11,11 +14,6 @@ export = 'example.App';
 var app = angular.module('example.App',
                          [ngSanitize, ngMessages, ngUiRouter, 'ui.bootstrap',
                            (ngSpinner, 'angularSpinner')]);
-
-import Spinner = require('spin.js');
-app.run(($window: ng.IWindowService) => {
-  $window['Spinner'] = Spinner;
-});
 
 import App = require('./app');
 import StateLanding = require('./states/landing');
