@@ -87,8 +87,8 @@ declare module restangular {
     one(route: string, id?: number): IElement;
     one(route: string, id?: string): IElement;
     oneUrl(route: string, url: string): IElement;
-    all(route: string): IElement;
-    allUrl(route: string, url: string): IElement;
+    all(route: string): ICollection;
+    allUrl(route: string, url: string): ICollection;
     copy(fromElement: any): IElement;
     withConfig(configurer: (RestangularProvider: IProvider) => any): IService;
     restangularizeElement(parent: any, element: any, route: string, collection?: any, reqParams?: any): IElement;
