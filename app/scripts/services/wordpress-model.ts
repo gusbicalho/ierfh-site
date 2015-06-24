@@ -1,5 +1,7 @@
 ///<reference path="../../../typings/project.d.ts" />
 
+import _ = require('lodash');
+
 export function RegisterWith(module: ng.IModule) {
   module.service('WordpressModel', Service);
 }
@@ -49,9 +51,9 @@ export class Service {
   taxonomy(name: string) {
     return this.Restangular.one('taxonomies', name);
   }
-  taxonomyAccessor(name: string) {
+  taxonomyAccessor = _.memoize((name: string) => {
     return new TaxonomyAccessor(this.taxonomy(name));
-  }
+  });
   
   categories() {
     return this.taxonomy('category');
