@@ -1,7 +1,7 @@
 {
-  "name": "gulp-bsfy-ts-sass-ng",
+  "name": "ierfh-site",
   "version": "0.0.0",
-  "description": "Base project using Angular 1 with Sass and TypeScript, built with Browserify and Gulp",
+  "description": "Project for IERFH blog theme",
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
