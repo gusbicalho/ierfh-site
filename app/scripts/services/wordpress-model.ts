@@ -23,7 +23,6 @@ export class Service {
     return this.Restangular.all('posts').getList<Post>();
   }
   post(id: number | string) {
-    console.log('WordpressModel.post', id);
     if (typeof id === 'number')
       return this.Restangular.one('posts', id).get<Post>();
     else
