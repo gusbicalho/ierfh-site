@@ -2,6 +2,7 @@
 
 import fs = require('fs');
 import stripBom = require('strip-bom');
+import WordpressModel = require('../services/wordpress-model');
 
 export function RegisterWith(module: ng.IModule) {
   module.config(configStates);
@@ -24,10 +25,10 @@ function configStates($stateProvider: ng.ui.IStateProvider) {
 export class Controller {
   // @ngInject
   constructor(private postName: string,
-              public $http: ng.IHttpService) {
-      $http.get('wp-json/posts?filter[name]='+encodeURIComponent(postName))
-        .then((result: any) => this.post = result.data[0])
+              private WordpressModel: WordpressModel.Service) {
+      WordpressModel.post(postName)
+        .then((post) => this.post = post)
   }
-  post: any;
+  post: WordpressModel.Post;
   detailsCollapsed: boolean = true;
 }

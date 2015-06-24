@@ -2,6 +2,7 @@
 
 import fs = require('fs');
 import stripBom = require('strip-bom');
+import WordpressModel = require('../services/wordpress-model');
 
 export function RegisterWith(module: ng.IModule) {
   module.config(configStates);
@@ -20,9 +21,8 @@ function configStates($stateProvider: ng.ui.IStateProvider) {
 
 export class LandingController {
   // @ngInject
-  constructor(private $http: ng.IHttpService) {
-    $http.get('wp-json/posts/')
-      .then((result: any) => this.posts = result.data);
+  constructor(private WordpressModel: WordpressModel.Service) {
+    WordpressModel.posts().then((posts) => this.posts = posts);
   }
-  posts: any[];
+  posts: WordpressModel.Post[];
 }

@@ -19,9 +19,11 @@ var app = angular.module('example.App',
                            (angularSpinner, 'angularSpinner'), (restangular, 'restangular')]);
 
 import App = require('./app');
+import WordpressModel = require('./services/wordpress-model');
 import StateLanding = require('./states/landing');
 import StatePost = require('./states/post');
 
 App.RegisterWith(app);
+WordpressModel.RegisterWith(app);
 StateLanding.RegisterWith(app);
 StatePost.RegisterWith(app);
