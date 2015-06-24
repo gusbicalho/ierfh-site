@@ -26,8 +26,8 @@ export class Controller {
   // @ngInject
   constructor(private postName: string,
               private WordpressModel: WordpressModel.Service) {
-      WordpressModel.post(postName)
-        .then((post) => this.post = post)
+      WordpressModel.getPost(postName)
+        .then((post) => this.post = post);
   }
   post: WordpressModel.Post;
   detailsCollapsed: boolean = true;

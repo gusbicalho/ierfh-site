@@ -22,7 +22,7 @@ function configStates($stateProvider: ng.ui.IStateProvider) {
 export class LandingController {
   // @ngInject
   constructor(private WordpressModel: WordpressModel.Service) {
-    WordpressModel.posts().then((posts) => this.posts = posts);
+    WordpressModel.getPosts().then((posts) => this.posts = posts);
   }
   posts: WordpressModel.Post[];
 }
