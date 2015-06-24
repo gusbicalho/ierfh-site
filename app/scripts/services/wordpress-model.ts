@@ -72,6 +72,21 @@ export class Service {
 }
 
 export class TaxonomyAccessor {
+  static getParentTermId(term: TaxonomyTerm) {
+    var parent = term.parent;
+    if (typeof parent === 'number') {
+      return parent;
+    }
+    if (!parent)
+      return null;
+    if (typeof parent === 'string') {
+      if (parent === '0')
+        return null;
+      else
+        return parseInt(parent);
+    }
+    return (<TaxonomyTerm>parent).ID;
+  }
   constructor(private taxonomy: restangular.IElement) {}
 
   element() {
