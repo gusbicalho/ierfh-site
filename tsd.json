@@ -25,6 +25,9 @@
     },
     "angular-spinner/angular-spinner.d.ts": {
       "commit": "3e117d8c9ddf6443d7ed71a74f6bc8b6bcd36077"
+    },
+    "restangular/restangular.d.ts": {
+      "commit": "448c3509f1ae76930ebd2d79df23e288172f5a0a"
     }
   }
 }
