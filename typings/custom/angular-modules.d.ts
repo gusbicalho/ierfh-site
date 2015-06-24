@@ -5,3 +5,4 @@ declare module 'angular-messages' {
 
 declare module 'spin.js' {}
 declare module 'angular-spinner' {}
+declare module 'restangular' {}

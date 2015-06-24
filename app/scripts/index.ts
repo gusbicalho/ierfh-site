@@ -7,13 +7,14 @@ import angular = require('angular');
 import ngMessages = require('angular-messages');
 import ngSanitize = require('angular-sanitize');
 import ngUiRouter = require('angular-ui-router');
-import ngSpinner = require('angular-spinner');
+import angularSpinner = require('angular-spinner');
+import restangular = require('restangular');
 
 export = 'example.App';
 
 var app = angular.module('example.App',
                          [ngSanitize, ngMessages, ngUiRouter, 'ui.bootstrap',
-                           (ngSpinner, 'angularSpinner')]);
+                           (angularSpinner, 'angularSpinner'), (restangular, 'restangular')]);
 
 import App = require('./app');
 import StateLanding = require('./states/landing');
