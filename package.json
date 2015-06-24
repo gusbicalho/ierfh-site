@@ -17,7 +17,7 @@
     "strip-bom": "~1.0.0"
   },
   "devDependencies": {
-    "brfs": "^1.4.0",
+    "brfs": "~1.4.0",
     "browserify": "~10.2.4",
     "browserify-ngannotate": "~1.0.1",
     "del": "~1.2.0",
