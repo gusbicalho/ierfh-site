@@ -8,6 +8,7 @@ window['Spinner'] = Spinner; // For compatibility with angularSpinner
 import angular = require('angular');
 import ngMessages = require('angular-messages');
 import ngSanitize = require('angular-sanitize');
+import ngAnimate = require('angular-animate');
 import ngUiRouter = require('angular-ui-router');
 import angularSpinner = require('angular-spinner');
 import restangular = require('restangular');
@@ -15,7 +16,7 @@ import restangular = require('restangular');
 export = 'example.App';
 
 var app = angular.module('example.App',
-                         [ngSanitize, ngMessages, ngUiRouter, 'ui.bootstrap',
+                         [ngSanitize, ngAnimate, ngMessages, ngUiRouter, 'ui.bootstrap',
                            (angularSpinner, 'angularSpinner'), (restangular, 'restangular')]);
 
 import App = require('./app');

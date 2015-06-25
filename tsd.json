@@ -28,6 +28,9 @@
     },
     "restangular/restangular.d.ts": {
       "commit": "448c3509f1ae76930ebd2d79df23e288172f5a0a"
+    },
+    "angularjs/angular-animate.d.ts": {
+      "commit": "448c3509f1ae76930ebd2d79df23e288172f5a0a"
     }
   }
 }

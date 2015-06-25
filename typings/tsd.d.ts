@@ -6,3 +6,4 @@
 /// <reference path="angularjs/angular-sanitize.d.ts" />
 /// <reference path="angular-spinner/angular-spinner.d.ts" />
 /// <reference path="restangular/restangular.d.ts" />
+/// <reference path="angularjs/angular-animate.d.ts" />
