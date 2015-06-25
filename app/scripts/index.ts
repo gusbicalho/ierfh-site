@@ -24,9 +24,11 @@ import DropdownToggleFix = require('./dropdown-toggle-fix');
 import WordpressModel = require('./services/wordpress-model');
 import StateLanding = require('./states/landing');
 import StatePost = require('./states/post');
+import StateCategory = require('./states/category');
 
 App.RegisterWith(app);
 DropdownToggleFix.RegisterWith(app);
 WordpressModel.RegisterWith(app);
 StateLanding.RegisterWith(app);
 StatePost.RegisterWith(app);
+StateCategory.RegisterWith(app);

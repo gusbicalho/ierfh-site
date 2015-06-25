@@ -1,0 +1,17 @@
+﻿<div class="container">
+  <div class="row">
+    <div class="col col-xs-12">
+      <h1>
+        <small ng-if="ctrl.category.parent.name">{{ctrl.category.parent.name}} ></small>
+        {{::ctrl.category.name}}
+      </h1>
+      <ul>
+      	<li ng-repeat="post in ctrl.posts">
+      		<a ui-sref="post({postName: post.slug})">
+      			{{::post.title}}
+      		</a>
+      	</li>
+      </ul>
+    </div>
+  </div>
+</div>
