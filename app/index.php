@@ -14,8 +14,8 @@
   <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
 </head>
 
-<body>
-  <nav class="navbar navbar-default navbar-fixed-top">
+<body ng-class="{'navbar-showing': !AppCtrl.isHome()}">
+  <nav class="navbar navbar-default navbar-fixed-top" ng-class="{'navbar-showing': !AppCtrl.isHome()}">
   	<div class="container-fluid">
   		<!-- Brand and toggle get grouped for better mobile display -->
   		<div class="navbar-header">
