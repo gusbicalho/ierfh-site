@@ -48,5 +48,25 @@ function preLoad(WordpressModel: WordpressModel.Service,
 
 class AppController {
   // @ngInject
-  constructor() {}
+  constructor(WordpressModel: WordpressModel.Service,
+              private $state: ng.ui.IStateService) {
+    WordpressModel.categoriesAccessor().getTerms()
+      .then((terms) => {
+        this.topCategories = _(terms).filter((t) => t.ID !== 1 && (!t.parent || t.parent === '0'))
+                                     .sortBy((term) => term.ID)
+                                     .value();
+        this.categoryChildren = {};
+        _.each(terms, (t) => {
+          var parent = TaxonomyAccessor.getParentTermId(t);
+          if (parent) {
+            this.categoryChildren[parent] = this.categoryChildren[parent] || [];
+            this.categoryChildren[parent].push(t);
+          }
+        });
+      });
+  }
+  topCategories: WordpressModel.TaxonomyTerm[] = [];
+  categoryChildren: {
+    [id: number]: WordpressModel.TaxonomyTerm[];
+  };
 }
