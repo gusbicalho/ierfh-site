@@ -58,8 +58,9 @@
   		</div><!--/.nav-collapse -->
   	</div><!--/.container -->
   </nav>
-
-  <div ui-view></div>
+  <div class="top-view-wrapper">
+    <div ui-view></div>
+  </div>
 </body>
 
 </html>
