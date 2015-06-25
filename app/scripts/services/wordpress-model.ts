@@ -63,10 +63,10 @@ export class Service {
   }
 
   tags() {
-    return this.taxonomy('post_tags');
+    return this.taxonomy('post_tag');
   }
   tagsAccessor() {
-    return this.taxonomyAccessor('post_tags');
+    return this.taxonomyAccessor('post_tag');
   }
 
 }
