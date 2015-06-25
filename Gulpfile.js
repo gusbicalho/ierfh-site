@@ -20,8 +20,8 @@ var appRoot = 'app';
 gulp.task('jshint', jshintTask);
 
 // Watchify tasks
-gulp.task('watchify', makeWatchify(appRoot+'/scripts/index.ts',outRoot, true));
-gulp.task('watchify-debug', makeWatchify(appRoot+'/scripts/index.ts',outRoot, false));
+gulp.task('watchify', makeWatchify(appRoot+'/scripts/index.ts', outRoot, null, true));
+gulp.task('watchify-debug', makeWatchify(appRoot+'/scripts/index.ts', outRoot, null, false));
 
 // App views tasks
 gulp.task('cleanIndex', cleanIndex(outRoot));
