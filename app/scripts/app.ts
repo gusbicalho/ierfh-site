@@ -2,6 +2,7 @@
 
 import _ = require('lodash');
 import WordpressModel = require('./services/wordpress-model');
+import TaxonomyAccessor = WordpressModel.TaxonomyAccessor;
 
 export function RegisterWith(module: ng.IModule) {
   module.config(config)
@@ -64,6 +65,9 @@ class AppController {
           }
         });
       });
+  }
+  isHome() {
+    return this.$state.current.name === '' || this.$state.is('landing');
   }
   topCategories: WordpressModel.TaxonomyTerm[] = [];
   categoryChildren: {
