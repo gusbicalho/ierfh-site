@@ -13,7 +13,10 @@ function configStates($stateProvider: ng.ui.IStateProvider) {
     .state('post', {
       url: '/post/:postName',
       resolve: {
-        postName: ($stateParams: ng.ui.IStateParamsService) => $stateParams['postName']
+        postName: ($stateParams: ng.ui.IStateParamsService) => $stateParams['postName'],
+        post:
+          (WordpressModel: WordpressModel.Service, postName: string) =>
+            WordpressModel.getPost(postName)
       },
       template: stripBom(fs.readFileSync(__dirname+'/post.html','utf-8')),
       controller: Controller,
@@ -25,10 +28,7 @@ function configStates($stateProvider: ng.ui.IStateProvider) {
 export class Controller {
   // @ngInject
   constructor(private postName: string,
-              private WordpressModel: WordpressModel.Service) {
-      WordpressModel.getPost(postName)
-        .then((post) => this.post = post);
+              public post: WordpressModel.Post) {
   }
-  post: WordpressModel.Post;
   detailsCollapsed: boolean = true;
 }

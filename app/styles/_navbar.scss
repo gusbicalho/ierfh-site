@@ -1,0 +1,25 @@
+body {
+  transition: padding-top .5s ease-in-out;
+  &.navbar-showing {
+    padding-top: $navbar-height;
+  }
+  @media (min-width: $screen-sm-min) {
+    padding-top: $grid-gutter-width;
+  }
+}
+
+nav.navbar {
+  top: -$navbar-height;
+  &.navbar-showing {
+    top: 0;
+  }
+  transition: top .5s ease-in-out;
+  [dropdown] a [dropdown-toggle] {
+    display: inline-block;
+    padding-left: $padding-xs-horizontal;
+    @media (max-width: $screen-xs-max) {
+      float: right;
+      padding: 0 $navbar-padding-horizontal;
+    }
+  }
+}

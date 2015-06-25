@@ -1,5 +1,6 @@
 ﻿///<reference path="../../../typings/project.d.ts" />
 
+import _ = require('lodash');
 import fs = require('fs');
 import stripBom = require('strip-bom');
 import WordpressModel = require('../services/wordpress-model');
@@ -12,6 +13,14 @@ function configStates($stateProvider: ng.ui.IStateProvider) {
   $stateProvider
     .state('landing', {
       url: '/',
+      resolve: {
+        topCategories:
+          (WordpressModel: WordpressModel.Service) =>
+            WordpressModel.categoriesAccessor().getTerms()
+              .then((terms) => _(terms).filter((t) => t.ID !== 1 && (!t.parent || t.parent === '0'))
+                                       .sortBy((term) => term.slug)
+                                       .value())
+      },
       template: stripBom(fs.readFileSync(__dirname+'/landing.html','utf-8')),
       controller: LandingController,
       controllerAs: 'ctrl'
@@ -21,8 +30,16 @@ function configStates($stateProvider: ng.ui.IStateProvider) {
 
 export class LandingController {
   // @ngInject
-  constructor(private WordpressModel: WordpressModel.Service) {
+  constructor(public topCategories: WordpressModel.TaxonomyTerm[],
+              private WordpressModel: WordpressModel.Service) {
     WordpressModel.getPosts().then((posts) => this.posts = posts);
   }
   posts: WordpressModel.Post[];
+  indexClass(classPrefix: string, index: number | string, last?: boolean) {
+    var classes: any = {};
+    classes[classPrefix+index] = true;
+    if (last)
+      classes[classPrefix+'last'] = true;
+    return classes;
+  }
 }

@@ -1,11 +1,15 @@
-﻿<h1>Posts</h1>
-<span ng-if="!ctrl.posts" us-spinner></span>
-<div ng-if="ctrl.posts">
-  <ul ng-if="ctrl.posts">
-  	<li ng-repeat="post in ctrl.posts">
-  		<a ui-sref="post({postName: post.slug})">
-  			{{::post.title}}
+﻿<div class="container">
+  <div class="row">
+    <div ng-repeat="category in ctrl.topCategories"
+        class="post-grid" ng-class="ctrl.indexClass('post-grid-', category.slug)">
+  		<a ui-sref="category({catSlug: category.slug})">
+  			{{::category.name}}
   		</a>
-  	</li>
-  </ul>
+  	</div>
+    <div class="post-grid post-grid-last">
+  		<a href>
+  			Ver todos os artigos
+  		</a>
+  	</div>
+  </div>
 </div>
