@@ -30,12 +30,18 @@
   		<div id="navbar" class="navbar-collapse" ng-init="navbarCollapsed = true" collapse="navbarCollapsed">
         <!-- These will show up in all pages -->
   			<ul class="nav navbar-nav navbar-left">
-  				<li><a href="wp-json">JSON API</a></li>
-  				<li class="dropdown" dropdown>
-            <a href class="dropdown-toggle" dropdown-toggle>Dropdown</a>
-            <ul class="dropdown-menu">
-              <li ng-repeat="i in [1,2,3,4,5]">
-                <a href>Option {{::i}}</a>
+          <li ng-repeat="category in AppCtrl.topCategories" dropdown>
+            <a ui-sref="category({catSlug: category.slug})">
+              {{::category.name}}
+              <span ng-if="AppCtrl.categoryChildren[category.ID]"
+                  class="dropdown-toggle" dropdown-toggle>
+                <span class="caret"></span>
+              </span>
+            </a>
+            <ul ng-if="AppCtrl.categoryChildren[category.ID]"
+                class="dropdown-menu">
+              <li ng-repeat="category in AppCtrl.categoryChildren[category.ID]">
+                <a ui-sref="category({catSlug: category.slug})">{{::category.name}}</a>
               </li>
             </ul>
           </li>
