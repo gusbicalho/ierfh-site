@@ -46,12 +46,14 @@
             </ul>
           </li>
   			</ul>
+        <ul class="nav navbar-nav navbar-right">
+  				<li><a href="wp-json">JSON API</a></li>
+  				<li><a href="wp-admin">Admin</a></li>
+        </ul>
         <!-- These may be overridden by states -->
         <ul class="nav navbar-nav navbar-left" ui-view="navbar-left">
-          <li><a href>Link on Left</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right" ui-view="navbar-right">
-          <li><a href>Link on Right</a></li>
         </ul>
   		</div><!--/.nav-collapse -->
   	</div><!--/.container -->
