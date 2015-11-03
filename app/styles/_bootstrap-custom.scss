@@ -1,13 +1,66 @@
-@import "yeti/variables";
+@import "paper/variables";
+@import "material-mixins";
 
-$color-etica: #009A1E;
-$color-futuro: #9A0002;
-$color-racionalidade: #0091B8;
+$theme-ierfh: (
+  primary: #9E9E9E,
+  primary-light: #F5F5F5,
+  primary-dark: #616161,
+  accent: #607D8B,
+  text-hardest: $text-black-hardest,
+  text-hard: $text-black-hard,
+  text-soft: $text-black-soft,
+  text-softest: $text-black-softest
+);
+$theme-etica: (
+  primary: #4CAF50,
+  primary-light: #C8E6C9,
+  primary-dark: #388E3C,
+  accent: #607D8B,
+  text-hardest: $text-black-hardest,
+  text-hard: $text-black-hard,
+  text-soft: $text-black-soft,
+  text-softest: $text-black-softest
+);
+$theme-futuro: (
+  /* Deep-orange
+  primary: #E64A19,
+  primary-light: #FFCCBC,
+  primary-dark: #BF360C,
+  /*/ // Red
+  primary: #D32F2F,
+  primary-light: #FFCDD2,
+  primary-dark: #B71C1C,
+  //*/
+  accent: #607D8B,
+  text-hardest: $text-white-hardest,
+  text-hard: $text-white-hard,
+  text-soft: $text-white-soft,
+  text-softest: $text-white-softest
+);
+$theme-racionalidade: (
+  primary: #3F51B5,
+  primary-light: #C5CAE9,
+  primary-dark: #303F9F,
+  accent: #607D8B,
+  text-hardest: $text-white-hardest,
+  text-hard: $text-white-hard,
+  text-soft: $text-white-soft,
+  text-softest: $text-white-softest
+);
 
-$body-bg: $gray-lighter;
+$color-etica: #4CAF50;
+$color-etica-light: #C8E6C9;
+$color-etica-dark: #388E3C;
+$color-futuro: #E64A19;
+$color-futuro-light: #FFCCBC;
+$color-futuro-dark: #BF360C;
+$color-racionalidade: #3F51B5;
+$color-racionalidade-light: #C5CAE9;
+$color-racionalidade-dark: #303F9F;
+$color-accent: #607D8B;
 
 @import "bootstrap";
-@import "yeti/bootswatch";
+@import "paper/bootswatch";
 
 .collapsing.in, .collapsing {
   overflow: hidden;

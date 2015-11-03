@@ -14,8 +14,9 @@
   <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
 </head>
 
-<body ng-class="{'navbar-showing': !AppCtrl.isHome()}">
-  <nav class="navbar navbar-default navbar-fixed-top" ng-class="{'navbar-showing': !AppCtrl.isHome()}">
+<body ng-class="AppCtrl.bodyClasses()">
+
+  <nav class="navbar navbar-default navbar-fixed-top mat-flat">
   	<div class="container-fluid">
   		<!-- Brand and toggle get grouped for better mobile display -->
   		<div class="navbar-header">
@@ -47,8 +48,19 @@
           </li>
   			</ul>
         <ul class="nav navbar-nav navbar-right">
-  				<li><a href="wp-json">JSON API</a></li>
-  				<li><a href="wp-admin">Admin</a></li>
+          <li dropdown>
+            <a href class="dropdown-toggle" dropdown-toggle>Meta Stuff <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href ng-click="AppCtrl.design = 1">
+                Estilo 1 <span ng-if="AppCtrl.design == 1">(ativo)</span>
+              </a></li>
+              <li><a href ng-click="AppCtrl.design = 2">
+                Estilo 2 <span ng-if="AppCtrl.design == 2">(ativo)</span>
+              </a></li>
+      				<li><a href="wp-json" target="_blank">JSON API</a></li>
+      				<li><a href="wp-admin" target="_blank">Admin</a></li>
+            </ul>
+          </li>
         </ul>
         <!-- These may be overridden by states -->
         <ul class="nav navbar-nav navbar-left" ui-view="navbar-left">
@@ -58,6 +70,11 @@
   		</div><!--/.nav-collapse -->
   	</div><!--/.container -->
   </nav>
+
+  <div id="header">
+    <div ui-view="header"></div>
+  </div>
+
   <div class="top-view-wrapper">
     <div ui-view></div>
   </div>

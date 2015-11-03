@@ -37,12 +37,13 @@ function preLoad(WordpressModel: WordpressModel.Service,
     WordpressModel.categoriesAccessor().getTerms()
       .then((terms) => $q.all(
         _.map(terms, (t) =>
-                      WordpressModel.categoriesAccessor().getTerm(t.slug))
-      )),
-    WordpressModel.tagsAccessor().get(),
-    WordpressModel.tagsAccessor().getTerms()
-      .then((terms) => $q.all(
-        _.map(terms, (t) => WordpressModel.tagsAccessor().getTerm(t.ID))
+                      WordpressModel.categoriesAccessor().getTerm(t.slug)
+                      .then((category) =>
+                        WordpressModel.getPosts({
+                          'filter[cat]': category.ID,
+                          'filter[posts_per_page]': 10
+                        })
+                      ))
       )),
   ]).then(() => console.log("Preloaded."));
 }
@@ -68,6 +69,21 @@ class AppController {
   }
   isHome() {
     return this.$state.current.name === '' || this.$state.is('landing');
+  }
+  design: number = 2;
+  bodyClasses() {
+    var classesObject: any = {};
+    classesObject['design'+this.design] = true;
+    if (!this.$state.current || !this.$state.current.data)
+      return classesObject;
+    var stateBodyClasses: any = this.$state.current.data.bodyClasses;
+    if (!stateBodyClasses)
+      return classesObject;
+    if (!_.isArray(stateBodyClasses))
+      classesObject[stateBodyClasses] = true;
+    else
+      _.each(stateBodyClasses, (c: any) => classesObject[c] = true);
+    return classesObject;
   }
   topCategories: WordpressModel.TaxonomyTerm[] = [];
   categoryChildren: {

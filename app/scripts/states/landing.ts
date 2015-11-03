@@ -21,9 +21,17 @@ function configStates($stateProvider: ng.ui.IStateProvider) {
                                        .sortBy((term) => term.slug)
                                        .value())
       },
-      template: stripBom(fs.readFileSync(__dirname+'/landing.html','utf-8')),
-      controller: LandingController,
-      controllerAs: 'ctrl'
+      data: {
+        bodyClasses: ['landing']
+      },
+      views: {
+        '': {template: ''},
+        'header': {
+          template: stripBom(fs.readFileSync(__dirname+'/landing-header.html','utf-8')),
+          controller: LandingController,
+          controllerAs: 'ctrl'
+        }
+      }
     })
     ;
 }

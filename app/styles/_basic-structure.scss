@@ -1,0 +1,144 @@
+$header-height: 256px;
+$header-padding-top: $navbar-height;
+$content-padding-top: $header-height - 72px;
+$content-min-height: 144px;
+$transition-duration: 150ms;
+
+body {
+  z-index: 0;
+}
+
+#header {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  min-height: $header-height;
+  padding-top: $header-padding-top;
+  background-color: $navbar-default-bg;
+  transition: background-color, min-height $transition-duration ease-in;
+  [ui-view] {
+     padding: 0 16px;
+  }
+}
+
+.top-view-wrapper {
+  position: relative;
+  padding-top: $content-padding-top;
+  z-index: 2;
+  opacity: 1;
+  transition: padding-top, opacity $transition-duration ease-out;
+}
+
+.container {
+  @media (max-width: $screen-xs-max) {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}
+.col-card {
+  @include mat-card(1);
+  padding: 24px 16px;
+  margin-bottom: 16px;
+  min-height: $content-min-height;
+}
+.container.card {
+  @include mat-card(1);
+  padding: 24px 16px;
+  margin-bottom: 16px;
+  min-height: $content-min-height;
+}
+
+nav.navbar .navbar-nav a {
+  text-transform: uppercase;
+  letter-spacing: .01em;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+$themes: (
+  landing: $theme-ierfh,
+  "cat-01-instituto": $theme-ierfh,
+  "cat-02-etica": $theme-etica,
+  "cat-03-racionalidade": $theme-racionalidade,
+  "cat-04-futuro-humanidade": $theme-futuro
+);
+
+@mixin with-theme1($theme) {
+  #header, nav.navbar {
+    background-color: map-get($theme, primary);
+    .navbar-toggle .icon-bar {
+      background-color: map-get($theme, text-hardest);
+    }
+    h1 {
+      color: map-get($theme, text-hardest);
+      small {
+        color: map-get($theme, text-hard);
+      }
+    }
+    ul.dropdown-menu {
+      background-color: map-get($theme, primary);
+      &>li>a:hover, &>li>a:focus {
+        background-color: map-get($theme, primary-dark);
+      }
+    }
+    a, a:hover, a:focus {
+      color: map-get($theme, text-hardest);
+    }
+    .open>a, .open>a:hover, .open>a:focus {
+      background-color: map-get($theme, primary-dark);
+      color: map-get($theme, text-hardest);
+    }
+  }
+}
+
+@mixin with-theme2($theme) {
+  background-color: map-get($theme, primary-dark);
+  #header, nav.navbar {
+    background-color: $mat-grey-900;
+    .navbar-toggle .icon-bar {
+      background-color: $text-white-hard;
+    }
+    h1 {
+      color: $text-white-hardest;
+      small {
+        color: $text-white-hard;
+      }
+    }
+    .open ul.dropdown-menu {
+      background-color: $mat-grey-800;
+      &>li>a {
+        color: $text-white-hardest;
+      }
+      &>li>a:hover, &>li>a:focus {
+        background-color: $mat-grey-900;
+      }
+    }
+    a, a:hover, a:focus {
+      color: $text-white-hardest;
+    }
+    .open>a, .open>a:hover, .open>a:focus {
+      background-color: $mat-grey-800;
+      color: $text-white-hardest;
+    }
+  }
+}
+
+// Default theme
+body.design1 {
+  @include with-theme1($theme-ierfh);
+}
+body.design2 {
+  @include with-theme2($theme-ierfh);
+}
+// Apply themes
+@each $bodyClass, $theme in $themes {
+  // Design 1
+  body.design1.#{$bodyClass} {
+    @include with-theme1($theme);
+  }
+  // Design 2
+  body.design2.#{$bodyClass} {
+    @include with-theme2($theme);
+  }
+}

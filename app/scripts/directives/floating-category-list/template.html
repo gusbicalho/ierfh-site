@@ -1,0 +1,20 @@
+<div class="flt-cat-list" ng-if="!ctrl.categories[0]">
+  <div class="cat">
+    <span us-spinner></span>
+  </div>
+</div>
+<div class="flt-cat-list" ng-if="ctrl.categories[0]">
+  <div class="cat">
+    <a ui-sref="landing">Home</a>
+  </div>
+  <div class="cat" ng-repeat="category in ctrl.categories">
+    <a ui-sref="category({catSlug: category.slug})">
+      <img class="small" ng-src="assets/img/{{::category.slug}}-sm.png" alt="{{::category.name}}-sm"/>
+      <img class="medium" ng-src="assets/img/{{::category.slug}}-md.png" alt="{{::category.name}}-md"/>
+      <img class="large" ng-src="assets/img/{{::category.slug}}-lg.png" alt="{{::category.name}}-lg"/>
+    </a>
+  </div>
+  <div class="cat">
+    <a href>Ver todos</a>
+  </div>
+</div>
